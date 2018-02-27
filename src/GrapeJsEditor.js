@@ -37,9 +37,9 @@ class GrapeJsEditor extends Component {
                     'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js',
                     'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js']
             },
-            script: function () {
-                $('.carousel').carousel('cycle');
-            },
+            // script: function () {
+            //     $('.carousel').carousel('cycle');
+            // },
             assetManager: {
                 assets: ["https://c1cleantechnicacom-wpengine.netdna-ssl.com/files/2017/01/Tesla-Model-3-red.png", "https://tctechcrunch2011.files.wordpress.com/2017/11/tesla-semi_46.jpg?w=738"],
                 noAssets: 'No <b>assets</b> here, drag to upload',
