@@ -6,6 +6,7 @@ import 'grapesjs/dist/css/grapes.min.css'
 import 'grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.css'
 import 'grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.js'
 import Template from './Template';
+import 'grapesjs-blocks-basic/dist/grapesjs-blocks-basic.min.js'
 import $ from "jquery";
 class GrapeJsEditor extends Component {
 
@@ -24,12 +25,18 @@ class GrapeJsEditor extends Component {
     componentDidMount() {
         var editor = grapesjs.init({
             container: '#gjs',
-            plugins: ['gjs-preset-webpage'],
+            plugins: ['grapesjs-blocks-basic','gjs-preset-webpage'],
             pluginsOpts: {
                 'gjs-preset-webpage': {
-                    // blocks:[ 'quote'],
-                    blocksBasicOpts:false
-                }},
+                    blocksBasicOpts:true   
+                   
+                },
+                'gjs-blocks-basic': {
+                    blocks:[ 'text', 'link', 'image', 'video', 'map']
+                }
+                
+              
+              },
             canvas: {
                 scripts: ['https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
                     'https://code.jquery.com/jquery-3.2.1.slim.min.js',
@@ -153,6 +160,9 @@ class GrapeJsEditor extends Component {
 
 
         // });
+        // var blockManager = editor.BlockManager;
+        // var blocks = blockManager.getAll();
+        // console.log(JSON.stringify(blocks));
     }
 }
 
