@@ -15,7 +15,7 @@ import TemplateEdit from './TemplateEdit';
 class Template extends Component {
     constructor(props) {
         super(props);
-        this.state = { edit: false };
+        // this.state = { edit: false };
         this.setEditMode = this.setEditMode.bind(this);
         this.state = {
             editMode: false,
