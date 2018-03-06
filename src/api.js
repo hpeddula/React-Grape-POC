@@ -1,4 +1,5 @@
-const endpoint = 'http://localhost:49219/api/';
+// const endpoint = 'http://localhost:49219/api/';
+const endpoint = 'http://192.168.9.188:97/api/';
 
 /*** Api - HTTP wrapper - is responsible for sending requests to server and relay parsed JSON response ***/
 

@@ -7,6 +7,7 @@ import Parser from 'html-react-parser';
 import 'grapesjs/dist/css/grapes.min.css'
 import 'grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.css'
 import 'grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.js'
+
 import GrapeJsEditor from './GrapeJsEditor';
 import TemplateEdit from './TemplateEdit';
 
@@ -33,10 +34,10 @@ class Template extends Component {
                     <div>
                         <h1 className="text-center">Templates</h1>
                         <div className="template-container">
-                            <div className="template" onClick={() => { this.handleTemplateSeclect(0) }}>Template1</div>
-                            <div className="template" onClick={() => { this.handleTemplateSeclect(1) }}>Template2</div>
-                            <div className="template" onClick={() => { this.handleTemplateSeclect(2) }}>Template3</div>
-                            <div className="template" onClick={() => { this.handleTemplateSeclect(3) }}>Template4</div>
+                            <div className="template" onClick={() => { this.handleTemplateSeclect(1) }}>Template1</div>
+                            <div className="template" onClick={() => { this.handleTemplateSeclect(2) }}>Template2</div>
+                            <div className="template" onClick={() => { this.handleTemplateSeclect(3) }}>Template3</div>
+                            <div className="template" onClick={() => { this.handleTemplateSeclect(4) }}>Template4</div>
                         </div>
                     </div>
                 }
@@ -59,14 +60,18 @@ class Template extends Component {
         this.setState({ templateSaved: !flag });
     }
     handleTemplateSeclect(id) {
-        this.setState(
-            {
-                templateID: id,
-                editMode: true
+        Api.get('template/' + id).then(
+            (id) => {
+                this.setState(
+                    {
+                        templateID: id,
+                        editMode: true
+                    }
+                )
             }
         )
-    }
 
+    }
 }
 export default Template;
 

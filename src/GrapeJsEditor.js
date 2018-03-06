@@ -5,7 +5,7 @@ import grapesjs from 'grapesjs';
 import 'grapesjs/dist/css/grapes.min.css'
 import 'grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.css'
 import 'grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.js'
-import Template from './Template';
+import 'grapesjs-lory-slider/dist/grapesjs-lory-slider.min.js'
 import 'grapesjs-blocks-basic/dist/grapesjs-blocks-basic.min.js'
 import $ from "jquery";
 class GrapeJsEditor extends Component {
@@ -25,18 +25,27 @@ class GrapeJsEditor extends Component {
     componentDidMount() {
         var editor = grapesjs.init({
             container: '#gjs',
-            plugins: ['grapesjs-blocks-basic','gjs-preset-webpage'],
+            plugins: ['gjs-blocks-basic', 'gjs-preset-webpage', 'grapesjs-lory-slider'],
             pluginsOpts: {
-                'gjs-preset-webpage': {
-                    blocksBasicOpts:true   
-                   
-                },
+                'grapesjs-lory-slider': {
+                    blocks: ['lory-sliders'],
+                    blocksBasicOpts: true
+                    },
                 'gjs-blocks-basic': {
-                    blocks:[ 'text', 'link', 'image', 'video', 'map']
-                }
+                blocks: ['text', 'link', 'image', 'video', 'map', 'link-block', 'quote', 'text-basic'],
+                blocksBasicOpts: true
+                },
                 
-              
-              },
+                'gjs-preset-webpage': {
+                blocks: ['quote'],
+                blocksBasicOpts: true
+                } 
+            }, 
+ 
+
+
+                //blocks: ['text', 'link', 'image', 'video', 'map', 'link-block', 'quote', 'text-basic']
+            
             canvas: {
                 scripts: ['https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
                     'https://code.jquery.com/jquery-3.2.1.slim.min.js',
@@ -48,14 +57,16 @@ class GrapeJsEditor extends Component {
             //     $('.carousel').carousel('cycle');
             // },
             assetManager: {
-                assets: ["https://c1cleantechnicacom-wpengine.netdna-ssl.com/files/2017/01/Tesla-Model-3-red.png", "https://tctechcrunch2011.files.wordpress.com/2017/11/tesla-semi_46.jpg?w=738"],
+                assets: ["https://c1cleantechnicacom-wpengine.netdna-ssl.com/files/2017/01/Tesla-Model-3-red.png", "https://tctechcrunch2011.files.wordpress.com/2017/11/tesla-semi_46.jpg?w=738","http://www.spacex.com/sites/spacex/files/images/dragon/tabs/dragon-lab.jpg"],
                 noAssets: 'No <b>assets</b> here, drag to upload',
-                upload: 'http://localhost:49219/api/image/PostUserImage',
+                upload: 'http://192.168.9.188:97/api/image/PostUserImage',
                 uploadName: 'files',
                 headers: {'Content-Type':'mulitpart/form-data'},
                 uploadText: 'Drop files here or click to upload',
                 addBtnText: 'Add image',
                 autoAdd: 1,
+            
+               
                 uploadFile: function (e) {
                     var files = e.dataTransfer ? e.dataTransfer.files : e.target.files;
                     // ...send somewhere
@@ -68,7 +79,7 @@ class GrapeJsEditor extends Component {
                     }
                     console.log(formData);
                     $.ajax({
-                        url: 'http://localhost:49219/api/image/PostUserImage',
+                        url: 'http://192.168.9.188:97/api/image/PostUserImage',
                         type: 'POST',
                         data: formData,
                         contentType: false,
@@ -85,11 +96,12 @@ class GrapeJsEditor extends Component {
 
                 }
             },
+            //,'http://localhost:49219/api/values/',http://localhost:49219/api/image/PostUserImage
             storageManager: {
                 id: 'gjs-',             // Prefix identifier that will be used inside storing and loading
                 type: 'remote',
-                urlStore: 'http://localhost:49219/api/values/' + this.props.id,
-                urlLoad: 'http://localhost:49219/api/values/'+ this.props.id,
+                urlStore:  'http://192.168.9.188:97/api/values/'  + this.props.id,
+                urlLoad:  'http://192.168.9.188:97/api/values/'+ this.props.id,
                 contentTypeJson: true,
                 autosave: false,         // Autoload stored data on init
                 stepsBeforeSave: 1,     // If autosave enabled, indicates how many changes are necessary before store method is triggered
@@ -160,9 +172,8 @@ class GrapeJsEditor extends Component {
 
 
         // });
-        // var blockManager = editor.BlockManager;
-        // var blocks = blockManager.getAll();
-        // console.log(JSON.stringify(blocks));
+       
+
     }
 }
 
